@@ -1,5 +1,6 @@
 package fr.epf.min2.projetfinal
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,7 +29,14 @@ class ProductAdapter(private var products: List<Product>) :
         holder.title.text = product.title
         holder.price.text = "${product.price} €"
         Glide.with(holder.itemView.context).load(product.image).into(holder.image)
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(holder.itemView.context, ProductDetailActivity::class.java)
+            intent.putExtra("product_id", product.id)
+            holder.itemView.context.startActivity(intent)
+        }
     }
+
 
     override fun getItemCount(): Int = products.size
 

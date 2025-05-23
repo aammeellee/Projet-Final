@@ -1,0 +1,57 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/product_detail_image"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:scaleType="centerCrop"
+            android:contentDescription="Product image"/>
+
+        <TextView
+            android:id="@+id/product_detail_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:paddingTop="12dp"/>
+
+        <TextView
+            android:id="@+id/product_detail_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:paddingTop="4dp"/>
+
+        <TextView
+            android:id="@+id/product_detail_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="12dp"
+            android:textSize="16sp"/>
+
+        <Button
+            android:id="@+id/addToCartButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ajouter au panier"
+            android:layout_marginTop="16dp"/>
+
+        <Button
+            android:id="@+id/viewCartButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Voir mon panier"
+            android:layout_marginTop="8dp"/>
+
+
+    </LinearLayout>
+</ScrollView>
