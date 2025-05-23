@@ -52,6 +52,14 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, CartActivity::class.java))
         }
 
+        val scanButton = findViewById<Button>(R.id.scanButton)
+        scanButton.setOnClickListener {
+            val intent = Intent(this, QRCodeScannerActivity::class.java)
+            startActivity(intent)
+        }
+
+
+
     }
 }
 

@@ -21,7 +21,6 @@ class CartActivity : AppCompatActivity() {
         setContentView(R.layout.activity_cart)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "Mon panier"
 
         cartRecyclerView = findViewById(R.id.cartRecyclerView)
         totalPriceText = findViewById(R.id.totalPriceText)
