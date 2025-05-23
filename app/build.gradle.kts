@@ -35,6 +35,10 @@ android {
     }
 }
 
+repositories {
+    jcenter()
+}
+
 dependencies {
 
     implementation(libs.androidx.core.ktx)
@@ -45,4 +49,14 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation("com.squareup.retrofit2:retrofit:3.1.0-SNAPSHOT")
+    implementation ("com.github.bumptech.glide:glide:4.14.2")
+    implementation ("me.dm7.barcodescanner:zxing:1.9.13")
+
+
+
+
+
+
 }
