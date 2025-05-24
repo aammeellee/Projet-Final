@@ -14,4 +14,11 @@ object CartManager {
     fun clearCart() {
         cartItems.clear()
     }
+
+    var onItemRemovedCallback: (() -> Unit)? = null
+
+    fun removeProduct(product: Product) {
+        cartItems.remove(cartItems.find { it.id == product.id })
+    }
+
 }

@@ -7,10 +7,7 @@ import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -18,32 +15,42 @@ class CartActivity : AppCompatActivity() {
 
     private lateinit var cartRecyclerView: RecyclerView
     private lateinit var totalPriceText: TextView
+    private lateinit var adapter: CartAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Mon panier"
 
         cartRecyclerView = findViewById(R.id.cartRecyclerView)
         totalPriceText = findViewById(R.id.totalPriceText)
 
-        val cartItems = CartManager.getCartItems()
-        val adapter = ProductAdapter(cartItems)
-        cartRecyclerView.adapter = adapter
-        cartRecyclerView.layoutManager = LinearLayoutManager(this)
+        adapter = CartAdapter(CartManager.getCartItems()) {
+            updateTotal()
+            if (CartManager.getCartItems().isEmpty()) {
+                Toast.makeText(this, "Panier vide", Toast.LENGTH_SHORT).show()
+            }
+        }
 
-        val total = CartManager.getTotalPrice()
-        totalPriceText.text = "Total : %.2f €".format(total)
+        cartRecyclerView.layoutManager = LinearLayoutManager(this)
+        cartRecyclerView.adapter = adapter
+
+        updateTotal()
 
         val clearButton = findViewById<Button>(R.id.clearCartButton)
         clearButton.setOnClickListener {
             CartManager.clearCart()
-            cartRecyclerView.adapter = ProductAdapter(emptyList())
-            totalPriceText.text = "Total : 0.00 €"
+            adapter.updateList(emptyList())
+            updateTotal()
             Toast.makeText(this, "Panier vidé", Toast.LENGTH_SHORT).show()
         }
+    }
 
+    private fun updateTotal() {
+        val total = CartManager.getTotalPrice()
+        totalPriceText.text = "Total : %.2f €".format(total)
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -60,16 +67,14 @@ class CartActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.action_wishlist -> {
                 startActivity(Intent(this, WishlistActivity::class.java))
-                true
+                return true
             }
             R.id.action_scan -> {
-                val intent = Intent(this, QRCodeScannerActivity::class.java)
-                startActivity(intent)
+                startActivity(Intent(this, QRCodeScannerActivity::class.java))
                 return true
             }
             R.id.action_cart -> {
-                val intent = Intent(this, CartActivity::class.java)
-                startActivity(intent)
+                startActivity(Intent(this, CartActivity::class.java))
                 return true
             }
         }
