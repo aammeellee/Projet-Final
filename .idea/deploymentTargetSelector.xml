@@ -20,13 +20,10 @@
       <SelectionState runConfigName="GestionClientMIN22025.app.unitTest">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="GestionClientMIN22025.app">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
       <SelectionState runConfigName="GestionClientMIN22025.app.main">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="QRCodeScannerTest">
+      <SelectionState runConfigName="GestionClientMIN22025.app">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

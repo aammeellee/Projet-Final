@@ -1,5 +1,6 @@
 package fr.epf.min2.projetfinal
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -21,6 +22,7 @@ class ProductDetailActivity : AppCompatActivity() {
     private lateinit var priceView: TextView
     private lateinit var descView: TextView
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_detail)
@@ -66,5 +68,11 @@ class ProductDetailActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()
+        return true
+    }
+
 }
 

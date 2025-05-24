@@ -46,6 +46,7 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.espresso.intents)
+    implementation(libs.androidx.junit.ktx)
 
     // Tests
     testImplementation(libs.junit)
