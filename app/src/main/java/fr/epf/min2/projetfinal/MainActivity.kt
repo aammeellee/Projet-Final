@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
@@ -48,18 +50,28 @@ class MainActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
 
-        findViewById<Button>(R.id.viewCartButton).setOnClickListener {
-            startActivity(Intent(this, CartActivity::class.java))
-        }
-
-        val scanButton = findViewById<Button>(R.id.scanButton)
-        scanButton.setOnClickListener {
-            val intent = Intent(this, QRCodeScannerActivity::class.java)
-            startActivity(intent)
-        }
-
-
-
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_bar, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_scan -> {
+                val intent = Intent(this, QRCodeScannerActivity::class.java)
+                startActivity(intent)
+                return true
+            }
+            R.id.action_cart -> {
+                val intent = Intent(this, CartActivity::class.java)
+                startActivity(intent)
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
 }
 

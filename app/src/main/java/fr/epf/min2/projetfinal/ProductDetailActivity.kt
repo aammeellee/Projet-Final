@@ -3,6 +3,8 @@ package fr.epf.min2.projetfinal
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -33,11 +35,6 @@ class ProductDetailActivity : AppCompatActivity() {
         val titleView = findViewById<TextView>(R.id.product_detail_title)
         val priceView = findViewById<TextView>(R.id.product_detail_price)
         val descView = findViewById<TextView>(R.id.product_detail_description)
-        val viewCartButton = findViewById<Button>(R.id.viewCartButton)
-
-        viewCartButton.setOnClickListener {
-            startActivity(Intent(this, CartActivity::class.java))
-        }
 
         val productId = intent.getIntExtra("product_id", -1)
 
@@ -73,6 +70,25 @@ class ProductDetailActivity : AppCompatActivity() {
         onBackPressedDispatcher.onBackPressed()
         return true
     }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_bar, menu)
+        return true
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_scan -> {
+                val intent = Intent(this, QRCodeScannerActivity::class.java)
+                startActivity(intent)
+                return true
+            }
+            R.id.action_cart -> {
+                val intent = Intent(this, CartActivity::class.java)
+                startActivity(intent)
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }
 
