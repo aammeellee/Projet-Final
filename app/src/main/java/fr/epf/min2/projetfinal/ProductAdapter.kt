@@ -26,9 +26,29 @@ class ProductAdapter(private var products: List<Product>) :
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val product = products[position]
+
         holder.title.text = product.title
         holder.price.text = "${product.price} €"
         Glide.with(holder.itemView.context).load(product.image).into(holder.image)
+
+        val heartIcon = holder.itemView.findViewById<ImageView>(R.id.favorite_icon)
+        heartIcon.setImageResource(
+            if (product.isFavorite) R.drawable.ic_red_heart else R.drawable.ic_heart_vide
+        )
+
+        heartIcon.setOnClickListener {
+            product.isFavorite = !product.isFavorite
+
+            heartIcon.setImageResource(
+                if (product.isFavorite) R.drawable.ic_red_heart else R.drawable.ic_heart_vide
+            )
+
+            if (product.isFavorite) {
+                WishlistManager.add(product)
+            } else {
+                WishlistManager.remove(product)
+            }
+        }
 
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, ProductDetailActivity::class.java)

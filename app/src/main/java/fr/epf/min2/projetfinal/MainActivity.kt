@@ -59,6 +59,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.action_wishlist -> {
+                startActivity(Intent(this, WishlistActivity::class.java))
+                true
+            }
             R.id.action_scan -> {
                 val intent = Intent(this, QRCodeScannerActivity::class.java)
                 startActivity(intent)
@@ -72,6 +76,14 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
+    override fun onResume() {
+        super.onResume()
+        if (::adapter.isInitialized) {
+            adapter.notifyDataSetChanged()
+        }
+    }
+
 
 }
 

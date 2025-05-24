@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -15,10 +15,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EpfBoutik"
         tools:targetApi="31">
-        <activity android:name="fr.epf.min2.projetfinal.CaptureActivityPortrait"
+        <activity
+            android:name=".WishlistActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CaptureActivityPortrait"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <activity android:name="fr.epf.min2.projetfinal.QRCodeScannerActivity" />
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".QRCodeScannerActivity" />
         <activity
             android:name=".CartActivity"
             android:exported="false" />

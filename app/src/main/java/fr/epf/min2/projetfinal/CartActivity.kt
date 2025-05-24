@@ -58,6 +58,10 @@ class CartActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.action_wishlist -> {
+                startActivity(Intent(this, WishlistActivity::class.java))
+                true
+            }
             R.id.action_scan -> {
                 val intent = Intent(this, QRCodeScannerActivity::class.java)
                 startActivity(intent)

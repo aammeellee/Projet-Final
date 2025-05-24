@@ -55,6 +55,29 @@ class ProductDetailActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
+
+                val favIcon = findViewById<ImageView>(R.id.detail_favorite_icon)
+
+                favIcon.setImageResource(
+                    if (product.isFavorite) R.drawable.ic_red_heart else R.drawable.ic_heart_vide
+                )
+
+                favIcon.setOnClickListener {
+                    product.isFavorite = !product.isFavorite
+
+                    favIcon.setImageResource(
+                        if (product.isFavorite) R.drawable.ic_red_heart else R.drawable.ic_heart_vide
+                    )
+
+                    if (product.isFavorite) {
+                        WishlistManager.add(product)
+                        Toast.makeText(this@ProductDetailActivity, "Ajouté aux favoris", Toast.LENGTH_SHORT).show()
+                    } else {
+                        WishlistManager.remove(product)
+                        Toast.makeText(this@ProductDetailActivity, "Retiré des favoris", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
             } catch (e: Exception) {
                 Toast.makeText(
                     this@ProductDetailActivity,
@@ -77,6 +100,10 @@ class ProductDetailActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.action_wishlist -> {
+                startActivity(Intent(this, WishlistActivity::class.java))
+                true
+            }
             R.id.action_scan -> {
                 val intent = Intent(this, QRCodeScannerActivity::class.java)
                 startActivity(intent)
