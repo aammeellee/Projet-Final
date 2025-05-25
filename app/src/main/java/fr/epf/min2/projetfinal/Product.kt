@@ -7,5 +7,11 @@ data class Product(
     val description: String,
     val category: String,
     val image: String,
+    val rating: Rating,
     var isFavorite: Boolean = false
+)
+
+data class Rating(
+    val rate: Double,
+    val count: Int
 )

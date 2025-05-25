@@ -38,6 +38,9 @@ class ProductDetailActivity : AppCompatActivity() {
 
         val productId = intent.getIntExtra("product_id", -1)
 
+        val ratingView = findViewById<TextView>(R.id.product_detail_rating)
+
+
         lifecycleScope.launch {
             try {
                 val product = ApiClient.apiService.getProductById(productId)
@@ -45,6 +48,8 @@ class ProductDetailActivity : AppCompatActivity() {
                 priceView.text = "${product.price} €"
                 descView.text = product.description
                 Glide.with(this@ProductDetailActivity).load(product.image).into(imageView)
+                ratingView.text = "Note : ${product.rating.rate} ⭐ (${product.rating.count} avis)"
+
 
                 val addButton = findViewById<Button>(R.id.addToCartButton)
                 addButton.setOnClickListener {
