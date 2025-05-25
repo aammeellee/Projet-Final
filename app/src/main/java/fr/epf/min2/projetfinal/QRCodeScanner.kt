@@ -18,6 +18,8 @@ class QRCodeScannerActivity : AppCompatActivity() {
         setContentView(R.layout.activity_qrcode_scanner)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Scan de QR Code"
+
 
         barcodeView = findViewById(R.id.barcode_scanner)
         barcodeView.decodeContinuous(object : BarcodeCallback {

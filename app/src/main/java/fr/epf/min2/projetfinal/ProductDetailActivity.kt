@@ -30,6 +30,8 @@ class ProductDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_product_detail)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Détail du produit"
+
 
         val imageView = findViewById<ImageView>(R.id.product_detail_image)
         val titleView = findViewById<TextView>(R.id.product_detail_title)
