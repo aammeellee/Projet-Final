@@ -38,8 +38,6 @@ Voici une application mobile responsive permettant de consulter, filtrer, scanne
 ## Expérience utilisateur
 
 - Interface fluide, minimaliste et responsive
-- Feedback utilisateur : Toasts et icônes dynamiques
-- Navigation centralisée via le **menu de l’action bar**
 - Icône de l'application personnalisée
 - Titre spécifique par page pour une meilleure orientation
 
